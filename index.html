@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0D9488">
+  <meta name="description" content="Aula Estrella: panel de positivos para clase.">
+  <title>Aula Estrella · Positivos de clase</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <section id="loginScreen" class="login-screen">
+    <div class="login-card">
+      <div class="logo-circle">★</div>
+      <p class="eyebrow">PANEL DE CLASE</p>
+      <h1>Bienvenido a <span class="brand-color">Aula Estrella</span></h1>
+      <p class="muted">Accede para gestionar los positivos de tus alumnos.</p>
+      <form id="loginForm" autocomplete="off">
+        <label for="passwordInput">Contraseña</label>
+        <div class="password-box">
+          <input id="passwordInput" type="password" placeholder="Introduce la contraseña" required autocomplete="current-password">
+          <button type="button" id="togglePassword" aria-label="Mostrar u ocultar contraseña" title="Mostrar u ocultar contraseña">◉</button>
+        </div>
+        <p id="loginError" class="error" role="alert"></p>
+        <button type="submit" class="btn btn-primary btn-wide">Entrar al panel →</button>
+      </form>
+      <p class="hint">Los datos se guardan en este navegador.</p>
+    </div>
+  </section>
+  <div id="appScreen" hidden>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="logo" href="#top" aria-label="Aula Estrella"><span>★</span> Aula<span class="brand-color">Estrella</span></a>
+        <div class="header-controls"><span class="status-dot"></span><span class="small-label">Mi clase</span><button class="btn btn-light" type="button" id="logoutButton">Salir ↗</button></div>
+      </div>
+    </header>
+    <main class="container" id="top">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow hero-eyebrow">✦ SEGUIMIENTO DE CLASE</p>
+          <h1>Cada esfuerzo<br><span>merece una estrella.</span></h1>
+          <p>Reconoce el progreso de tus alumnos con positivos. ¡Cada estrella cuenta!</p>
+        </div>
+        <div class="hero-decoration" aria-hidden="true"><span class="star-big">★</span><span class="star-mini">✦</span></div>
+      </section>
+      <section class="stats" aria-label="Estadísticas de la clase">
+        <article class="stat-card"><div class="stat-icon purple">♙</div><div><p>Alumnos</p><strong id="totalStudents">0</strong></div></article>
+        <article class="stat-card"><div class="stat-icon yellow">★</div><div><p>Positivos totales</p><strong id="totalStars">0</strong></div></article>
+        <article class="stat-card"><div class="stat-icon mint">✓</div><div><p>Con positivos</p><strong id="studentsWithStars">0</strong></div></article>
+      </section>
+      <section class="panel">
+        <div class="panel-top">
+          <div><p class="eyebrow">GESTIONA TU CLASE</p><h2>Lista de alumnos</h2><p class="muted">Suma o resta estrellas según sus logros.</p></div>
+          <button class="btn btn-primary" id="newStudentButton" type="button">＋ Añadir alumno</button>
+        </div>
+        <div class="toolbar">
+          <label class="search-box"><span aria-hidden="true">⌕</span><input id="searchInput" type="search" placeholder="Buscar un alumno..." aria-label="Buscar alumno"></label>
+          <span class="counter" id="studentCount">0 alumnos</span>
+        </div>
+        <div class="table-heading"><span>ALUMNO</span><span>POSITIVOS</span><span>ACCIONES</span></div>
+        <div id="studentList" class="student-list"></div>
+        <div class="empty" id="emptyState" hidden><div>☆</div><h3>No hay alumnos para mostrar</h3><p>Añade un alumno o cambia la búsqueda.</p></div>
+        <footer class="panel-footer"><span><b>★</b> Una estrella = un positivo</span><span>Los cambios se guardan automáticamente</span></footer>
+      </section>
+      <p class="page-footer">Aula Estrella · Motiva a tu clase, estrella a estrella.</p>
+    </main>
+  </div>
+  <dialog id="studentDialog" class="modal">
+    <form id="studentForm">
+      <div class="modal-top"><span class="modal-logo">＋</span><button type="button" id="closeDialog" class="icon-close" aria-label="Cerrar">×</button></div>
+      <h2>Nuevo alumno</h2><p class="muted">Escribe el nombre del alumno para añadirlo a la lista.</p>
+      <label for="studentName">Nombre y apellidos</label>
+      <input id="studentName" type="text" maxlength="60" placeholder="Ej. Laura García" required autocomplete="off">
+      <p class="error" id="studentError" role="alert"></p>
+      <div class="dialog-actions"><button type="button" id="cancelDialog" class="btn btn-light">Cancelar</button><button type="submit" class="btn btn-primary">Añadir alumno</button></div>
+    </form>
+  </dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
